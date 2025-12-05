@@ -1,0 +1,13 @@
+getgenv().autoGarden = true
+
+local Remote = game.ReplicatedStorage.Network.Instancing_InvokeCustomFromClient
+
+while getgenv().autoGarden do task.wait()
+    local count = 1
+    for i = 1,10 do
+        Remote:InvokeServer("FlowerGarden", "PlantSeed", count, "Diamond")
+        Remote:InvokeServer("FlowerGarden", "InstaGrowSeed", count)
+        Remote:InvokeServer("FlowerGarden", "ClaimPlant", count)
+        count = count + 1
+    end
+end
